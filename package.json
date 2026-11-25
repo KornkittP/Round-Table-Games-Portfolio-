@@ -1,0 +1,17 @@
+{
+  "name": "round-table-games",
+  "private": true,
+  "type": "module",
+  "workspaces": ["apps/*", "packages/*"],
+  "scripts": {
+    "dev": "bun run --cwd apps/api dev",
+    "dev:web": "bun run --cwd apps/web dev",
+    "build:web": "bun run --cwd apps/web build",
+    "test": "bun run --cwd apps/api test && bun run --cwd apps/web test",
+    "typecheck": "bun run --cwd packages/database typecheck && bun run --cwd apps/api typecheck && bun run --cwd apps/web typecheck",
+    "db:generate": "bun run --cwd packages/database db:generate",
+    "db:migrate": "bun run --cwd packages/database db:migrate",
+    "db:seed": "bun run --cwd packages/database db:seed"
+  },
+  "engines": { "bun": ">=1.2" }
+}

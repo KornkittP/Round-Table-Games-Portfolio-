@@ -1,0 +1,68 @@
+{
+  "city-line": {
+    "id": 435092,
+    "description": "New railway is coming to your cities! As governors of your town, your goal is to have the most awesome view for passengers. While creating the best view on your side, you also have to balance it well with the other side. Too wonderful is a fraud!\n\nIn this 9-Card card game, you are trying to have the most scoring points without having much gap in points between you and your opponent. You draw a card each turn and place it with either Cityscape side (doing this three times) or Scoring side face up (do exactly one time). After all cards are placed, you will get points based on what appears on your side. Player with the highest points wins.. unless the gap between both players is higher than 5 points which will cause a player with lower points to win instead!\n\n—description from the designer",
+    "mechanics": [
+      "Action Retrieval",
+      "Card Play Conflict Resolution",
+      "Catch the Leader",
+      "Melding and Splaying",
+      "Multi-Use Cards",
+      "Solo / Solitaire Game"
+    ],
+    "categories": [
+      "City Building",
+      "Puzzle",
+      "Trains"
+    ],
+    "rating": 8.3,
+    "votes": 26,
+    "weight": 1.0,
+    "checked": "2026-11-25"
+  },
+  "potato-tomato": {
+    "id": 420700,
+    "description": "Baked potato. Baked tomato. Which one is the most popular side dish?\n No one knows how it started. Rumour has it, the rivalry began when one of the potatoes claimed that baked potato is the most popular side dish. A fiery tomato challenged the claim, asserting that the most popular side dish is, in fact, baked tomato! The argument quickly spread around the world of side dishes. Hence began the “PotatoTomato” conflict! However, the Alliance of Fruits and Vegetables has yet to get involved in this nonsense... for now!\n Both the Potatoes and the Tomatoes have started sending spies to sabotage each other. You are one of the spies. Your mission is to reveal other players’ roles. When all role cards of a single player are exposed, that player - and everyone on the same team - is eliminated.\n Be careful - Teams can be changed at any time during the game. Trust no-one!",
+    "mechanics": [
+      "Hidden Roles",
+      "Hot Potato",
+      "Push Your Luck",
+      "Roles with Asymmetric Information",
+      "Take That",
+      "Team-Based Game",
+      "Variable Player Powers",
+      "Voting"
+    ],
+    "categories": [
+      "Bluffing",
+      "Card Game",
+      "Deduction",
+      "Humor",
+      "Party Game"
+    ],
+    "rating": 6.5,
+    "votes": 50,
+    "weight": 1.0,
+    "checked": "2026-11-25"
+  },
+  "cat-avenue": {
+    "id": 376568,
+    "description": "You all are cats from cat star who tries to be born again as a cat with the most potential, by trying to lead a cat to a specific place. Beware! Some of them aren't cat at all!\nA rondel-style game in which you will play one of pawed card from your hand to create a pattern for the cat to walk around in a circle tries to find the best cat (or not-a-cat) that suit you and give the most points. The one who has the most fish (or in other words, points) is the winner of the game.",
+    "mechanics": [
+      "Movement Points",
+      "Pattern Recognition",
+      "Rondel",
+      "Set Collection",
+      "Take That"
+    ],
+    "categories": [
+      "Card Game",
+      "Humor",
+      "Party Game"
+    ],
+    "rating": 6.8,
+    "votes": 10,
+    "weight": 1.0,
+    "checked": "2026-11-25"
+  }
+}
