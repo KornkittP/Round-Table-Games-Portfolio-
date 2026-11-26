@@ -42,6 +42,7 @@ export function safeLink(value: string | null) {
   }
 }
 export function artwork(game: Game) {
+  if (game.slug === "possessed") return "/art/possessed.webp"
   if (bggGame(game.slug)) return "/art/" + game.slug + "-bgg.webp"
   if (game.slug === "tangmo-tangmo-tangmo") return "/art/tangmo-tangmo-tangmo.png"
   return (

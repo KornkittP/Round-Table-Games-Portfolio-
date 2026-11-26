@@ -126,7 +126,6 @@ export default async function Page({ params }: Props) {
               unoptimized={!!g.coverImage}
             />
             {bgg && <small><a target="_blank" rel="noopener noreferrer" href={g.bggUrl || "https://boardgamegeek.com/boardgame/" + bgg.id}>{thai ? "ภาพปกและข้อมูลจาก BoardGameGeek" : "Cover and game data from BoardGameGeek"}</a></small>}
-            {!bgg && !g.coverImage && g.slug === "possessed" && <small>{t.art}</small>}
           </div>
           <div>
             <small className="label">{t[g.status]}</small>

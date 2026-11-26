@@ -33,7 +33,7 @@ export function Home({ lang, games }: { lang: Locale; games: Game[] }) {
           </div>
         </div>
         <GameSlideshow lang={lang} slides={games.flatMap(game => {
-          const src = game.slug === "possessed" ? "/art/possessed-slideshow.webp" : artwork(game)
+          const src = artwork(game)
           return src === "/art/hero.webp" ? [] : [{ slug: game.slug, title: game.title, src }]
         })} />
       </section>

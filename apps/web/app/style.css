@@ -650,3 +650,51 @@ h2 i {
 .solo-railway li { display: flex; flex: none; height: 105px; }
 .solo-railway img { width: auto; }
 @media (max-width: 700px) { .solo-turn { grid-template-columns: minmax(0, 1fr); gap: .4rem; } }
+
+/* Pigmented paper and softly uneven edges echo the studio's illustrated covers. */
+body {
+  --paper: #fff8e9;
+  --ink: #342e43;
+  --red: #994454;
+  --line: #cec0b2;
+  --grain: url("/art/paper-grain.png");
+  background-color: var(--paper);
+  background-image: var(--grain), radial-gradient(ellipse at 91% 12%, #e5dbf1, transparent 53%), radial-gradient(ellipse at 12% 55%, #ffebc3, transparent 55%);
+  background-size: auto, 100% 54rem, 100% 54rem;
+  background-repeat: repeat, no-repeat, no-repeat;
+}
+.hero em {
+  display: inline-block;
+  position: relative;
+  isolation: isolate;
+  text-shadow: 1px 2px #f5c8b7;
+}
+.hero em::after {
+  content: ""; position: absolute; z-index: -1; inset: 78% -4% 0;
+  background: var(--grain), #efc66e;
+  clip-path: polygon(1% 27%, 30% 9%, 66% 14%, 100% 0, 98% 70%, 77% 79%, 25% 95%, 0 100%);
+}
+.shelfBand { background: var(--grain), #e3eedf; border-color: #a5b59c; }
+footer { background: var(--grain), #e9e2ef; }
+.btn, .catalogCard, .accountCard, .panel { border-radius: 12px 8px 14px 9px / 8px 14px 9px 13px; }
+.btn.primary { background-image: var(--grain); }
+.catalogCard, .accountCard, .panel, .solo-game { background-image: var(--grain); }
+.heroArt {
+  width: min(100%, 30rem); justify-self: center; aspect-ratio: auto; overflow: visible;
+  padding: .45rem .45rem .2rem .85rem; background: var(--grain), #b9aad1;
+  border-radius: 8px 14px 13px 7px;
+  box-shadow: 2px 2px #faf0d8, 3px 3px #8a797b, 5px 5px #fff4dd, 6px 6px #8a797b, 8px 9px #d4c1ae;
+}
+.heroSlideImage { flex: auto; aspect-ratio: 1.03; perspective: 1000px; overflow: hidden; }
+.coverPage { position: absolute; inset: 0; background: var(--grain), #fff3da; }
+.coverPage img { object-fit: contain; }
+.turningPage { pointer-events: none; backface-visibility: hidden; animation: turn-leaf .65s ease-in-out forwards; }
+.turnForward { transform-origin: left center; --leaf-angle: -97deg; }
+.turnBack { transform-origin: right center; --leaf-angle: 97deg; }
+@keyframes turn-leaf {
+  0% { transform: rotateY(0); }
+  80% { filter: brightness(.88); }
+  100% { transform: rotateY(var(--leaf-angle)); visibility: hidden; }
+}
+.heroSlideBar { border-top: 1px solid var(--line); border-radius: 0 0 7px 4px; background: var(--grain), var(--paper); }
+@media (prefers-reduced-motion: reduce) { .turningPage { display: none; } }

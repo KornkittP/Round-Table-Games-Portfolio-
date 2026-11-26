@@ -6,6 +6,8 @@ import Link from "next/link"
 import { NextIntlClientProvider } from "next-intl"
 import { Brand, Header } from "@/components/Header"
 import { isLocale, messages } from "@/lib/locale"
+export const metadata = { icons: { icon: "/studio-icon.png" } }
+
 export default async function Layout({
   children,
   params
