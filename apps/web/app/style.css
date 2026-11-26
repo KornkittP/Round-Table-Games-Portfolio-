@@ -622,3 +622,13 @@ h2 i {
 .material-gallery figure { margin: 0; }
 .material-gallery img { width: 100%; height: auto; display: block; }
 .material-gallery figcaption { margin-top: .5rem; }
+.heroArt { display: flex; flex-direction: column; background: var(--ink); }
+.heroSlideImage { position: relative; flex: 1; min-height: 0; }
+.heroSlideImage img { object-fit: contain; }
+.heroSlideBar { display: flex; align-items: center; justify-content: space-between; gap: .5rem; padding: .35rem .65rem; background: var(--paper); }
+.heroSlideBar a { font-weight: 700; line-height: 1.25; }
+.heroSlideBar small { display: inline-block; margin-right: .3rem; font-variant-numeric: tabular-nums; }
+.heroSlideControls { display: flex; flex-shrink: 0; }
+.heroSlideControls button { display: grid; place-items: center; width: 40px; height: 40px; background: transparent; color: var(--ink); border: 0; border-radius: 50%; cursor: pointer; }
+.heroSlideControls button:hover { background: var(--line); }
+.heroSlideControls svg { width: 19px; }

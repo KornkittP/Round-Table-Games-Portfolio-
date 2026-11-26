@@ -1,9 +1,9 @@
-import Image from "next/image"
+import { GameSlideshow } from "./GameSlideshow"
 import Link from "next/link"
 import { Dices, Sparkles } from "lucide-react"
 import { Shelf } from "./Shelf"
 import { messages, type Locale } from "@/lib/locale"
-import type { Game } from "@/lib/catalog"
+import { artwork, type Game } from "@/lib/catalog"
 export function Home({ lang, games }: { lang: Locale; games: Game[] }) {
   const t = messages[lang],
     base = "/" + lang
@@ -32,19 +32,10 @@ export function Home({ lang, games }: { lang: Locale; games: Game[] }) {
             </Link>
           </div>
         </div>
-        <div className="heroArt">
-          <Image
-            src="/art/hero.webp"
-            alt={
-              lang === "en"
-                ? "A red die, blue meeple and mustard cards on a printed tabletop"
-                : "ลูกเต๋าสีแดง ตัวหมากสีน้ำเงิน และการ์ดสีเหลืองบนโต๊ะเกม"
-            }
-            fill
-            priority
-            sizes="(max-width:760px) 94vw,52vw"
-          />
-        </div>
+        <GameSlideshow lang={lang} slides={games.flatMap(game => {
+          const src = game.slug === "possessed" ? "/art/possessed-slideshow.webp" : artwork(game)
+          return src === "/art/hero.webp" ? [] : [{ slug: game.slug, title: game.title, src }]
+        })} />
       </section>
       <div className="shelfBand">
         <Shelf lang={lang} games={games} />
