@@ -3,6 +3,7 @@ import { ContactAccounts } from "@/components/ContactAccounts"
 import { Resume } from "@/components/Profile"
 import { bggGame } from "@/lib/bgg"
 import { editions } from "@/lib/editions"
+import shopeeListings from "@/lib/shopee-listings.json"
 import type { Metadata } from "next"
 import Image from "next/image"
 import Link from "next/link"
@@ -107,8 +108,16 @@ export default async function Page({ params }: Props) {
       g.description && g.description !== "Details coming soon."
         ? g.description
         : edition?.[lang]
+    const listings: Partial<Record<string, string[]>> = shopeeListings
+    const shops = listings[g.slug] ?? []
     const links = [
       [g.shopUrl, t.shop],
+      ...shops.filter(url => url !== g.shopUrl).map((url, i) => [
+        url,
+        shops.length === 1
+          ? (thai ? "ซื้อบน Shopee" : "Buy on Shopee")
+          : (thai ? `Shopee · ร้านที่ ${i + 1}` : `Shopee · Shop ${i + 1}`)
+      ]),
       [g.rulebookUrl, t.rulebook],
       [g.pnpUrl, t.downloads],
       [g.bggUrl, "BoardGameGeek"]
