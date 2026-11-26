@@ -1,15 +1,5 @@
 import type { Locale } from "@/lib/locale"
 
-export function PublicLinks({lang}:{lang:Locale}) {
- const thai=lang==="th"
- return <div className="actions">
- <a className="btn" href="https://www.facebook.com/roundtablegames">Round Table Games · Facebook</a>
- <a className="btn" href="https://www.facebook.com/profile.php?id=61578105683557">{thai?"อีกเพจของตอง":"Tong’s second page"} · Facebook</a>
- <a className="btn" href="https://www.tiktok.com/@readitmyself">อ่านเอง · TikTok</a>
- <a className="btn" href="https://www.readawrite.com/?action=user_page&user_id_publisher=4268109">{thai?"งานเขียน":"Writing"} · readAwrite</a>
- </div>
-}
-
 export function Resume({lang}:{lang:Locale}){
  const th=lang==="th"
  const roles=[

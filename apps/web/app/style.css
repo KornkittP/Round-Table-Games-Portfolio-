@@ -596,3 +596,29 @@ h2 i {
 .catalogList .catalogCover { border-radius: 6px; }
 .catalogList h3 { font-size: 1.25rem; }
 .catalogList .cardInfo { padding: .6rem 1rem; }
+
+.accountGrid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 1rem; margin-block: 2rem; max-width: 64rem; }
+.accountCard { padding: clamp(1rem, 2vw, 1.6rem); border: 1px solid var(--line); border-radius: 12px; background: #f4f0e5; }
+.accountCard:first-child { grid-column: 1 / -1; background: #f5e9d3; }
+.accountHeading, .platformLinks, .platformLinks a { display: flex; align-items: center; gap: .7rem; }
+.accountHeading h2 { font-size: clamp(1.3rem, 2vw, 1.8rem); line-height: 1.25; }
+.accountHeading p { margin-top: .15rem; }
+.accountAvatar { width: 68px; height: 68px; flex: none; border-radius: 50%; overflow: hidden; display: grid; place-items: center; font-size: 1.5rem; font-weight: 750; background: #e4d9c4; color: #603f28; }
+.accountAvatar img { width: 100%; height: 100%; object-fit: cover; }
+.accountAvatar img[src*="studio-logo"] { object-fit: contain; padding: 4px; }
+.platformLinks { flex-wrap: wrap; margin-top: 1rem; }
+.platformLinks a { gap: .45rem; padding: .5rem .75rem; border: 1px solid var(--line); background: var(--paper); border-radius: 6px; text-decoration: none; font-weight: 650; }
+.platformLinks a:hover { border-color: var(--red); }
+.contactPage form { max-width: 44rem; }
+.readerTrigger { padding: 0; border: 0; background: transparent; color: inherit; }
+.translationReader iframe { display: block; width: 100%; height: 70vh; margin-block: 1rem; border: 1px solid var(--line); background: var(--paper); }
+.translationReader label { display: block; margin-top: .8rem; }
+@media (max-width: 650px) { .accountGrid { grid-template-columns: 1fr; } }
+.game-resources > section { margin-block: 2.5rem; }
+.game-resources details { margin-top: 1rem; }
+.game-resources summary { cursor: pointer; font-weight: 700; }
+.game-resources details section { max-width: 72ch; margin-block: 1.5rem; }
+.material-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 17rem), 1fr)); gap: 1rem; }
+.material-gallery figure { margin: 0; }
+.material-gallery img { width: 100%; height: auto; display: block; }
+.material-gallery figcaption { margin-top: .5rem; }

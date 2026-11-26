@@ -7,7 +7,7 @@ export type BrowseItem = {
   groups: string[]
   cover: string
   href: string
-  extraLink?: { href: string; label: string }
+  extraLink?: { href: string; label: string; booklets?: { id: string; label: string }[] }
   year?: number | null
   rating?: number | null
   minPlayers?: number

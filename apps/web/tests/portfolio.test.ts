@@ -24,10 +24,11 @@ describe("portfolio", () => {
       Object.keys(messages.th).sort()
     )
   })
-  test("studio mode lists five closed games and the three supplied BGG links", async () => {
+  test("studio mode lists six closed games and the three supplied BGG links", async () => {
     delete process.env.NEXT_PUBLIC_API_URL
     const games = await listGames("th")
-    expect(games).toHaveLength(5)
+    expect(games).toHaveLength(6)
+    expect(games.find(g => g.slug === "neko-knows")?.status).toBe("print_and_play")
     expect(games.filter((g) => g.bggUrl)).toHaveLength(3)
     expect(games.every((g) => !canReserve(g))).toBe(true)
     expect(await findGame("th", "missing")).toBeUndefined()

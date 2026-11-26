@@ -1,3 +1,4 @@
+import { materials } from "@/lib/game-materials"
 import { artwork, safeLink, type Game } from "@/lib/catalog"
 import { messages, type Locale } from "@/lib/locale"
 import { editions } from "@/lib/editions"
@@ -11,7 +12,7 @@ export function GameBrowser({games,lang,downloads=false}:{games:Game[];lang:Loca
     const edition=editions[game.slug]
     const [minPlayers,maxPlayers=minPlayers]=edition?.players.split(/[–-]/).map(Number) ?? []
     const download=downloads && safeLink(game.pnpUrl)
-    return {id:game.slug,title:game.title,groups:game.pnpUrl && game.status!=="print_and_play" ? [game.status,"print_and_play"] : [game.status],
+    return {id:game.slug,title:game.title,groups:(game.pnpUrl || materials[game.slug]?.printFiles?.length) && game.status!=="print_and_play" ? [game.status,"print_and_play"] : [game.status],
       year:game.year ?? edition?.year,minPlayers,maxPlayers,rating:bggGame(game.slug)?.rating,
       href:"/"+lang+"/games/"+encodeURIComponent(game.slug),cover:artwork(game),
       extraLink:download ? {href:download,label:t.downloads}:undefined}

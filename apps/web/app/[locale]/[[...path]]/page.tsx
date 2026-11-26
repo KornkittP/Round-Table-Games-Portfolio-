@@ -1,5 +1,6 @@
 import { Translations } from "@/components/Translations"
-import { PublicLinks, Resume } from "@/components/Profile"
+import { ContactAccounts } from "@/components/ContactAccounts"
+import { Resume } from "@/components/Profile"
 import { bggGame } from "@/lib/bgg"
 import { editions } from "@/lib/editions"
 import type { Metadata } from "next"
@@ -7,6 +8,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Database, PanelsTopLeft, Workflow, Printer } from "lucide-react"
+import { GameResources } from "@/components/GameResources"
+import { materials } from "@/lib/game-materials"
 import { Home } from "@/components/Home"
 import { GameBrowser, Shelf } from "@/components/Shelf"
 import { Contact } from "@/components/Contact"
@@ -121,7 +124,7 @@ export default async function Page({ params }: Props) {
               height={667}
               unoptimized={!!g.coverImage}
             />
-            {bgg && <small><a href={g.bggUrl || "https://boardgamegeek.com/boardgame/" + bgg.id}>{thai ? "ภาพปกและข้อมูลจาก BoardGameGeek" : "Cover and game data from BoardGameGeek"}</a></small>}
+            {bgg && <small><a target="_blank" rel="noopener noreferrer" href={g.bggUrl || "https://boardgamegeek.com/boardgame/" + bgg.id}>{thai ? "ภาพปกและข้อมูลจาก BoardGameGeek" : "Cover and game data from BoardGameGeek"}</a></small>}
             {!bgg && !g.coverImage && g.slug === "possessed" && <small>{t.art}</small>}
           </div>
           <div>
@@ -178,7 +181,7 @@ export default async function Page({ params }: Props) {
               {links.map(
                 ([u, label]) =>
                   safeLink(u) && (
-                    <a className="btn" key={label} href={safeLink(u)!}>
+                    <a target="_blank" rel="noopener noreferrer" className="btn" key={label} href={safeLink(u)!}>
                       {label}
                     </a>
                   )
@@ -186,6 +189,7 @@ export default async function Page({ params }: Props) {
             </div>
           </div>
         </div>
+        <GameResources slug={g.slug} lang={lang} printAndPlay={g.status === "print_and_play"} externalPack={!!safeLink(g.pnpUrl)} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -219,7 +223,7 @@ export default async function Page({ params }: Props) {
   }
   if (route === "print-and-play") {
     const games = (await listGames(lang)).filter(
-      (g) => g.pnpUrl || g.status === "print_and_play"
+      (g) => materials[g.slug]?.printFiles?.length || g.pnpUrl || g.status === "print_and_play"
     )
     return (
       <section className="wrap inside">
@@ -314,11 +318,11 @@ export default async function Page({ params }: Props) {
           })}
         </div>
         <div className="actions">
-          <a className="btn primary" href={repository}>
+          <a target="_blank" rel="noopener noreferrer" className="btn primary" href={repository}>
             {t.source}
           </a>
           {safeLink(process.env.NEXT_PUBLIC_API_URL || null) && (
-            <a className="btn" href={process.env.NEXT_PUBLIC_API_URL + "/docs"}>
+            <a target="_blank" rel="noopener noreferrer" className="btn" href={process.env.NEXT_PUBLIC_API_URL + "/docs"}>
               {t.apiDocs}
             </a>
           )}
@@ -327,20 +331,16 @@ export default async function Page({ params }: Props) {
     )
   if (route === "contact")
     return (
-      <section className="wrap inside narrow">
+      <section className="wrap inside contactPage">
         <h1>
           {t.contact}
           <i>.</i>
         </h1>
-        <p>{t.contactIntro}</p><PublicLinks lang={lang}/>
+        <p>{t.contactIntro}</p><ContactAccounts lang={lang}/>
         {process.env.RESEND_API_KEY &&
         process.env.CONTACT_FROM &&
-        process.env.CONTACT_TO ? (
+        process.env.CONTACT_TO && (
           <Contact lang={lang} />
-        ) : (
-          <a className="btn primary" href="https://github.com/KornkittP">
-            {t.github}
-          </a>
         )}
       </section>
     )

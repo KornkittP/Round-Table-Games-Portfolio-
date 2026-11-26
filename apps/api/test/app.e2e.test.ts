@@ -44,13 +44,13 @@ describe("public routes", () => {
     expect(await res.json()).toEqual({ status: "ok" })
   })
 
-  it("GET /games returns the 5 games in the requested language", async () => {
+  it("GET /games returns the 6 games in the requested language", async () => {
     const res = await call("/games?lang=en")
     expect(res.status).toBe(200)
     const json: any = await res.json()
-    expect(json.data.map((g: any) => g.slug)).toEqual(["possessed", "potato-tomato", "cat-avenue", "city-line", "tangmo-tangmo-tangmo"])
+    expect(json.data.map((g: any) => g.slug)).toEqual(["possessed", "potato-tomato", "cat-avenue", "city-line", "tangmo-tangmo-tangmo", "neko-knows"])
     expect(json.data[0].lang).toBe("en")
-    expect(json.meta).toEqual({ total: 5, filtered: 5 })
+    expect(json.meta).toEqual({ total: 6, filtered: 6 })
   })
 
   it("GET /games/:slug uses Accept-Language; 404 for unknown", async () => {

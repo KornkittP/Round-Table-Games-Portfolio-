@@ -6,14 +6,18 @@ import type { Locale } from "@/lib/locale"
 export function Translations({ lang }: { lang: Locale }) {
   const thai = lang === "th"
   const groups = {community: thai ? "งานแปลแจกฟรี" : "Free translations", wdg: thai ? "งานแปลให้ Well Designed Games" : "Well Designed Games"}
-  const items = catalog.map(game => ({
+  const items = catalog.map(game => {
+    const fileId = game.resource?.match(/^https:\/\/drive\.google\.com\/file\/d\/([\w-]+)\/view$/)?.[1]
+    const booklets = game.booklets ?? (fileId ? [{ id: fileId, label: game.title }] : undefined)
+    return {
     id:String(game.id), title:thai && game.thai ? game.thai : game.title,
     subtitle:thai && game.thai ? game.title : game.thai,
     groups:[game.group], cover:game.cover, href:game.bgg, year:game.year,
     minPlayers:game.minPlayers, maxPlayers:game.maxPlayers,
     rating:game.rating,
-    extraLink:game.resource ? {href:game.resource,label:thai ? "อ่านฉบับแปลไทย" : "Read Thai translation"} : undefined
-  }))
+    extraLink:game.resource ? {href:game.resource,label:thai ? "อ่านฉบับแปลไทย" : "Read Thai translation",booklets} : undefined
+    }
+  })
   return (
     <section className="wrap inside translations">
       <div className="detail translationIntro">

@@ -228,6 +228,10 @@
     "group": "community",
     "id": 228660,
     "resource": "https://drive.google.com/drive/folders/1o5bo1AazDMLZwNBLRSH0A8YZ62X12uQP",
+    "booklets": [
+      { "id": "1rUvJG6E9ldZqJV5TPRF5C03nFxTqQSys", "label": "Survival’s Guide" },
+      { "id": "1kzItp8U0CJZnHUhTni84iFfStuxFRs4q", "label": "Traitor’s Tome" }
+    ],
     "bgg": "https://boardgamegeek.com/boardgame/228660/betrayal-at-baldurs-gate",
     "year": 2017,
     "minPlayers": 3,

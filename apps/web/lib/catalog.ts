@@ -9,7 +9,8 @@ const titles = [
   ["potato-tomato", "Potato Tomato", "420700"],
   ["cat-avenue", "Cat Avenue", "376568"],
   ["city-line", "City Line", "435092"],
-  ["tangmo-tangmo-tangmo", "Tangmo Tangmo Tangmo", ""]
+  ["tangmo-tangmo-tangmo", "Tangmo Tangmo Tangmo", ""],
+  ["neko-knows", "NEKO KNOWS", ""]
 ]
 export function studioGames(lang: Locale): Game[] {
   return titles.map(([slug, title, id], sortOrder) => ({
@@ -17,7 +18,7 @@ export function studioGames(lang: Locale): Game[] {
     title: slug === "tangmo-tangmo-tangmo" && lang === "th" ? "แตงโม แตงโม แตงโม" : title,
     lang,
     sortOrder,
-    status: slug === "tangmo-tangmo-tangmo" ? "in_development" : "published",
+    status: slug === "neko-knows" ? "print_and_play" : slug === "tangmo-tangmo-tangmo" ? "in_development" : "published",
     tagline: "",
     description: "",
     year: null,

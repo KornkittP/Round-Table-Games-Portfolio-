@@ -30,7 +30,8 @@ export const SEED_GAMES: NewGame[] = [
     bggUrl: "https://boardgamegeek.com/boardgame/435092/city-line",
     sortOrder: 4
   },
-  { slug: "tangmo-tangmo-tangmo", titleEn: "Tangmo Tangmo Tangmo", titleTh: "แตงโม แตงโม แตงโม", status: "in_development", sortOrder: 5 }
+  { slug: "tangmo-tangmo-tangmo", titleEn: "Tangmo Tangmo Tangmo", titleTh: "แตงโม แตงโม แตงโม", status: "in_development", sortOrder: 5 },
+  { slug: "neko-knows", titleEn: "NEKO KNOWS", status: "print_and_play", sortOrder: 6 }
 ]
 
 /** Insert the starter games. Existing slugs are left alone, so later edits are never overwritten. */

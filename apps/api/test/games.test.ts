@@ -14,13 +14,13 @@ const list = (q: Record<string, unknown> = {}, lang: "th" | "en" = "en") =>
   GetGameList.execute(GameListModel.querySchema.parse(q), lang)
 
 describe("seed", () => {
-  it("inserted the 5 games, and seeding again adds nothing and keeps edits", async () => {
+  it("inserted the 6 games, and seeding again adds nothing and keeps edits", async () => {
     expect((await list()).data.map((g) => g.slug)).toEqual([
       "possessed",
       "potato-tomato",
       "cat-avenue",
       "city-line",
-      "tangmo-tangmo-tangmo"
+      "tangmo-tangmo-tangmo", "neko-knows"
     ])
     await t.db.update(games).set({ titleTh: "แมว" }).where(eq(games.slug, "cat-avenue"))
     expect(await seedGames(t.db)).toBe(0)
@@ -48,14 +48,14 @@ describe("GetGameList", () => {
 
   it("paginates and reports total and filtered counts", async () => {
     const page = await list({ page: "2", pageSize: "3" })
-    expect(page.data.map((g) => g.slug)).toEqual(["city-line", "tangmo-tangmo-tangmo"])
-    expect(page.meta).toEqual({ total: 5, filtered: 5 })
+    expect(page.data.map((g) => g.slug)).toEqual(["city-line", "tangmo-tangmo-tangmo", "neko-knows"])
+    expect(page.meta).toEqual({ total: 6, filtered: 6 })
   })
 
   it("searches title and slug, case-insensitively", async () => {
     const res = await list({ search: "CAT" })
     expect(res.data.map((g) => g.slug)).toEqual(["cat-avenue"])
-    expect(res.meta).toEqual({ total: 5, filtered: 1 })
+    expect(res.meta).toEqual({ total: 6, filtered: 1 })
   })
 
   it("treats % and _ in search literally", async () => {
@@ -67,7 +67,7 @@ describe("GetGameList", () => {
     expect((await list({ status: "in_development" })).data).toHaveLength(1)
     expect((await list({ status: "published|in_development" })).data).toHaveLength(5)
     expect((await list({ preorderOpen: "true" })).data).toHaveLength(0)
-    expect((await list({ preorderOpen: "false" })).data).toHaveLength(5)
+    expect((await list({ preorderOpen: "false" })).data).toHaveLength(6)
   })
 })
 
