@@ -8,6 +8,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { notFound } from "next/navigation"
 import { Database, PanelsTopLeft, Workflow, Printer } from "lucide-react"
+import { CityLineSolo } from "@/components/CityLineSolo"
 import { GameResources } from "@/components/GameResources"
 import { materials } from "@/lib/game-materials"
 import { Home } from "@/components/Home"
@@ -189,6 +190,7 @@ export default async function Page({ params }: Props) {
             </div>
           </div>
         </div>
+        {g.slug === "city-line" && <CityLineSolo lang={lang} />}
         <GameResources slug={g.slug} lang={lang} printAndPlay={g.status === "print_and_play"} externalPack={!!safeLink(g.pnpUrl)} />
         <script
           type="application/ld+json"

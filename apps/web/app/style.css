@@ -632,3 +632,21 @@ h2 i {
 .heroSlideControls button { display: grid; place-items: center; width: 40px; height: 40px; background: transparent; color: var(--ink); border: 0; border-radius: 50%; cursor: pointer; }
 .heroSlideControls button:hover { background: var(--line); }
 .heroSlideControls svg { width: 19px; }
+.solo-game { margin-block: 2.5rem; padding: clamp(1rem, 3vw, 2rem); border: 2px solid var(--ink); border-radius: 14px; background: var(--paper); }
+.solo-game h3 { margin-block: .6rem; }
+.solo-game button { cursor: pointer; }
+.solo-score, .solo-controls { display: flex; flex-wrap: wrap; gap: .5rem; margin-block: 1rem; }
+.solo-score span { padding: .4rem .8rem; border-radius: 6px; background: #efe9d9; }
+.solo-score span:last-child { background: var(--ink); color: var(--paper); }
+.solo-turn { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); align-items: center; gap: 1.5rem; }
+.solo-preview { display: grid; place-items: center; min-width: 0; height: clamp(210px, 32vw, 320px); }
+.solo-preview img, .solo-railway img { width: 100%; height: 100%; object-fit: contain; min-height: 0; }
+.solo-rotated { transform: rotate(180deg); }
+.solo-controls [aria-pressed=true] { background: var(--ink); color: var(--paper); }
+.solo-controls :disabled { opacity: .45; cursor: default; }
+.solo-description p { font-size: .9rem; margin-block: .35rem; }
+.solo-description { margin-bottom: 1rem; }
+.solo-railway { display: flex; align-items: center; gap: .4rem; overflow-x: auto; padding: .65rem; margin: 0 0 1rem; list-style: none; background: #ece8d9; border-radius: 8px; }
+.solo-railway li { display: flex; flex: none; height: 105px; }
+.solo-railway img { width: auto; }
+@media (max-width: 700px) { .solo-turn { grid-template-columns: minmax(0, 1fr); gap: .4rem; } }
