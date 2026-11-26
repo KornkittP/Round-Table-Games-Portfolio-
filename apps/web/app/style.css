@@ -698,3 +698,7 @@ footer { background: var(--grain), #e9e2ef; }
 }
 .heroSlideBar { border-top: 1px solid var(--line); border-radius: 0 0 7px 4px; background: var(--grain), var(--paper); }
 @media (prefers-reduced-motion: reduce) { .turningPage { display: none; } }
+.platformHeading { display: flex; align-items: center; gap: .6rem; font-size: 1.65rem; }
+.platformHeading img { flex: none; }
+.shopListings { margin-block: 1.5rem; }
+.shopListings p, .shopListings .actions { margin-top: .65rem; }

@@ -109,18 +109,14 @@ export default async function Page({ params }: Props) {
         ? g.description
         : edition?.[lang]
     const listings: Partial<Record<string, string[]>> = shopeeListings
-    const shops = listings[g.slug] ?? []
+    const shopUrl = safeLink(g.shopUrl)
+    const isShopee = shopUrl && /(^|\.)shopee\.co\.th$/.test(new URL(shopUrl).hostname)
+    const shops = [...new Set([...(listings[g.slug] ?? []), ...(isShopee && shopUrl ? [shopUrl] : [])])]
+    const bggUrl = safeLink(g.bggUrl) ?? (bgg ? "https://boardgamegeek.com/boardgame/" + bgg.id : null)
     const links = [
-      [g.shopUrl, t.shop],
-      ...shops.filter(url => url !== g.shopUrl).map((url, i) => [
-        url,
-        shops.length === 1
-          ? (thai ? "ซื้อบน Shopee" : "Buy on Shopee")
-          : (thai ? `Shopee · ร้านที่ ${i + 1}` : `Shopee · Shop ${i + 1}`)
-      ]),
+      [isShopee ? null : shopUrl, t.shop],
       [g.rulebookUrl, t.rulebook],
-      [g.pnpUrl, t.downloads],
-      [g.bggUrl, "BoardGameGeek"]
+      [g.pnpUrl, t.downloads]
     ]
     return (
       <section className="wrap inside">
@@ -134,7 +130,7 @@ export default async function Page({ params }: Props) {
               height={667}
               unoptimized={!!g.coverImage}
             />
-            {bgg && <small><a target="_blank" rel="noopener noreferrer" href={g.bggUrl || "https://boardgamegeek.com/boardgame/" + bgg.id}>{thai ? "ภาพปกและข้อมูลจาก BoardGameGeek" : "Cover and game data from BoardGameGeek"}</a></small>}
+            {bgg && <small><a target="_blank" rel="noopener noreferrer" href={bggUrl!}>{thai ? "ภาพปกและข้อมูลจาก BoardGameGeek" : "Cover and game data from BoardGameGeek"}</a></small>}
           </div>
           <div>
             <small className="label">{t[g.status]}</small>
@@ -145,12 +141,16 @@ export default async function Page({ params }: Props) {
             <p>{t.by}</p>
             {g.tagline && <p>{g.tagline}</p>}
             {description?.split(/\n+/).filter(Boolean).map((paragraph,i)=><p key={i}>{paragraph}</p>)}
-            {bgg && <section className="bggFacts"><h2>BoardGameGeek</h2><dl>
+            {bggUrl && <section className="bggFacts" aria-label="BoardGameGeek">
+              <h2 className="platformHeading"><img src="/art/boardgamegeek.svg" width="28" height="28" alt="" />
+                <a href={bggUrl} target="_blank" rel="noopener noreferrer">BoardGameGeek ↗</a>
+              </h2>
+              {bgg && <><dl>
               <dt>{thai ? "คะแนนผู้เล่น" : "Community rating"}</dt><dd>{bgg.votes ? bgg.rating.toFixed(1)+" / 10" : "—"} ({bgg.votes} {thai?"คะแนนโหวต":"ratings"})</dd>
               <dt>{thai?"ความซับซ้อน":"Complexity weight"}</dt><dd>{bgg.weight ? bgg.weight.toFixed(2)+" / 5" : "—"}</dd>
               <dt>{thai?"กลไกเกม":"Mechanisms"}</dt><dd>{bgg.mechanics.join(" · ")}</dd>
               <dt>{thai?"หมวดหมู่":"Categories"}</dt><dd>{bgg.categories.join(" · ")}</dd></dl>
-              <small>{thai?"ตรวจสอบข้อมูลเมื่อ":"Snapshot checked"} {new Intl.DateTimeFormat(lang,{dateStyle:"long",timeZone:"UTC"}).format(new Date(bgg.checked))}</small>
+              <small>{thai?"ตรวจสอบข้อมูลเมื่อ":"Snapshot checked"} {new Intl.DateTimeFormat(lang,{dateStyle:"long",timeZone:"UTC"}).format(new Date(bgg.checked))}</small></>}
             </section>}
             {edition && (
               <p>
@@ -181,6 +181,17 @@ export default async function Page({ params }: Props) {
                 }).format(new Date(g.preorderCloses))}
               </p>
             )}
+            {shops.length > 0 && <section className="shopListings" aria-label="Shopee">
+              <h2 className="platformHeading"><img src="/art/shopee.svg" width="28" height="28" alt="" />
+                {thai ? "ซื้อบน Shopee" : "Buy on Shopee"}
+              </h2>
+              <p>{thai ? "ดูราคาและจำนวนสินค้าคงเหลือที่หน้าร้านแต่ละแห่ง" : "Check each listing for its current price and stock."}</p>
+              <div className="actions">
+                {shops.map((url, i) => <a key={url} href={url} className="btn" target="_blank" rel="noopener noreferrer">
+                  {thai ? `ร้านที่ ${i + 1}` : `Shop ${i + 1}`} ↗
+                </a>)}
+              </div>
+            </section>}
             <div className="actions">
               {open && (
                 <Link className="btn primary" href={href + "/preorder"}>
